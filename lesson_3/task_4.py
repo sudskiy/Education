@@ -5,3 +5,28 @@
 # Подсказка: попробуйте решить задачу двумя способами. Первый — возведение в степень с помощью оператора **.
 # Второй — более сложная реализация без оператора **, предусматривающая использование цикла.
 
+def my_func(x, y):
+    return x ** y
+
+
+x = float(input("введите число"))
+y = int(input("введите степень числа"))
+
+print(my_func(x, y))
+
+
+# second variant
+def my_func(x, y):
+    if y == 0:
+        return 1
+    elif y > 0:
+        a = x
+        for el in range(y):
+            x = x * a
+        return x
+    else:
+        a = x
+        for el in range(abs(y)):
+            x = x * a
+        return 1 / x
+

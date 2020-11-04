@@ -2,3 +2,6 @@
 # город проживания, email, телефон. Функция должна принимать параметры как именованные аргументы.
 # Реализовать вывод данных о пользователе одной строкой.
 
+def information(name, surname, burn_year, city, email, phone):
+    print(name, surname, burn_year, city, email, phone, sep=" ")
+
