@@ -6,3 +6,22 @@
 # Например, в первом задании выводим целые числа, начиная с 3, а при достижении числа 10 завершаем цикл.
 # Во втором также необходимо предусмотреть условие, при котором повторение элементов списка будет прекращено.
 
+from itertools import count, cycle
+
+
+def iterator_1(start, stop):
+    a = 0
+    for el in count(start):
+        a += 1
+        print(el)
+        if a >= stop:
+            return print(" This is the end ")
+
+
+def iterator_2(list):
+    a = 0
+    for el in cycle(list):
+        a += 1
+        print(el)
+        if a >= len(list):
+            return print(" This is the end ")
