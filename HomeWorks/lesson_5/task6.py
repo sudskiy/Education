@@ -11,3 +11,12 @@
 # Пример словаря:
 # {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
 
+with open('new_file_5.txt', 'r', encoding='utf-8') as file:
+    lines = [line.strip() for line in file]
+
+result = {}
+for el in lines:
+    kluch, lctemp = el.split(sep=":")[0], el.split(sep=":")[1].strip().split(sep=" ")
+    znacheniye = [ch.split(sep="(")[0] for ch in lctemp if ch.split(sep="(")[0].isdigit()]
+    result[kluch] = sum([int(num) for num in znacheniye])
+print(result)

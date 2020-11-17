@@ -17,3 +17,16 @@
 
 # Подсказка: использовать менеджеры контекста.
 
+import json
+
+companies = {}
+
+with open('new_file_6.txt', 'r', encoding='utf-8') as comp:
+    for itm in comp:
+        data = itm.split()
+        companies[data[0]] = int(data[2]) - int(data[3])
+average = {'average_profit': sum(filter(lambda x: x >= 0, companies.values())) / len(companies)}
+total = [companies, average]
+
+with open('new_file_6.json', 'w') as file:
+    json.dump(total, file, ensure_ascii=False)
