@@ -7,3 +7,26 @@
 # Задачу можно усложнить, реализовав проверку порядка режимов, и при его нарушении выводить соответствующее сообщение и
 # завершать скрипт.
 
+from time import sleep
+
+class TrafficLight:
+    __color = "Красный"
+
+    def running(self):
+        while True:
+            if TrafficLight.__color == "Красный":
+                print("Красный сигнал")
+                TrafficLight.__color = "Желтый"
+                sleep(7)
+            elif TrafficLight.__color == "Желтый":
+                print("Желтый сигнал")
+                TrafficLight.__color = "Зеленый"
+                sleep(2)
+            else:
+                print("Зеленый сигнал")
+                TrafficLight.__color = "Красный"
+                sleep(3)
+
+
+a = TrafficLight()
+a.running()
