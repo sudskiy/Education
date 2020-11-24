@@ -8,3 +8,30 @@
 # Подсказка: сложение элементов матриц выполнять поэлементно — первый элемент первой строки первой матрицы складываем с
 # первым элементом первой строки второй матрицы и т.д.
 
+class Matrix:
+    def __init__(self, data):
+        self.data = data
+
+    def __str__(self):
+        return '\n'.join(['\t'.join(map(str, row)) for row in self.data])
+
+    def __add__(self, other):
+        # Чтобы много не писать, проверяю только количество строк в матрице и кол-во элементов в первой строке
+        if len(self.data) == len(other.data) and len(self.data[0]) == len(other.data[0]):
+            return Matrix([*map(lambda sd_lst, od_lst: [*map(sum, zip(sd_lst, od_lst))], self.data, other.data)])
+        else:
+            return 'У матриц разное количество элементов, а значит их нелья сложить!'
+
+mx1 = Matrix([[31, 22], [37, 43], [51, 86]])
+mx2 = Matrix([[3, 5, 32], [2, 4, 6], [-1, 64, -8]])
+mx3 = Matrix([[3, 5, 8, 3], [8, 3, 7, 1]])
+mx4 = Matrix([[5, 3, 3, 8], [1, 7, -3, 8]])
+
+if __name__ == '__main__':
+    print(f'Matrix 1:\n{mx1}\n')
+    print(f'Matrix 2:\n{mx2}\n')
+    print(f'Matrix 3:\n{mx3}\n')
+    print(f'mx3 + mx4:\n{mx3 + mx4}\n')
+
+    # Должен сработать else
+    print(f'mx1 + mx2:\n{mx1 + mx2}\n')

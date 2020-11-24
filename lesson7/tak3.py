@@ -20,3 +20,51 @@
 # Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5. Тогда метод make_order() вернет строку:
 # *****\n*****\n*****.
 
+class Cell:
+    def __init__(self, num_cells):
+        self.__num_cells = num_cells
+
+    @property
+    def num_cells(self):
+        return self.__num_cells
+
+    def __add__(self, other):
+        return Cell(self.num_cells + other.num_cells)
+
+    def __sub__(self, other):
+        result = self.num_cells - other.num_cells
+        if result > 0:
+            return Cell(result)
+        raise ValueError('Недопустимый результат: разность количества ячеек двух клеток меньше нуля!')
+
+    def __mul__(self, other):
+        return Cell(self.num_cells * other.num_cells)
+
+    def __truediv__(self, other):
+        return Cell(self.num_cells // other.num_cells)
+
+    def make_order(self, partition):
+        if not isinstance(partition, int):
+            raise TypeError('Принимаются только целочисленные значения!')
+        num_partitions = self.num_cells // partition
+        last_partition = self.num_cells % partition
+        order = r'\n'.join(['*' * partition for _ in range(num_partitions)])
+        if last_partition:
+            order += r'\n' + '*' * last_partition
+        return order
+
+
+if __name__ == '__main__':
+    body1 = Cell(8)
+    body2 = Cell(9)
+    body3 = body1 + body2
+    print(body3.make_order(5))
+
+    body4 = body3 - body1
+    print(body4.make_order(3))
+
+    body6 = body1 * body2
+    print(body6.make_order(4))
+
+    body7 = body6 / body2
+    print(body7.make_order(4))
